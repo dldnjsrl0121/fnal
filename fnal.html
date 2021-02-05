@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>世界一可愛い子石田瑠光へ</title>
+	<link rel="stylesheet" type="text/css" href="css/post.css">
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var post = document.querySelector('#post');
+			var postfront = document.querySelector('#postfront');
+			var postback = document.querySelector('#postback');
+			var backimg = document.querySelector('#postback > .postbody > img');
+			post.addEventListener("click",flippost);
+		}
+		function flippost(){
+			post.animate({transform : 'rotateY(-180deg)'},1800);
+			setTimeout(function(){
+				postfront.style.zIndex = -1;
+				postback.style.zIndex = 1;
+			},900)
+			setTimeout(function(){
+				post.style.transform = 'rotateY(-180deg)';
+			},1800)
+			post.addEventListener("click",flipedpost);
+			post.removeEventListener("click",flippost);
+		}
+		function flipedpost(){
+			post.animate({transform : 'rotate(90deg)'},1800);
+			setTimeout(function(){
+				post.style.transform  = 'rotate(90deg)';
+			},1800)
+			post.addEventListener("click",openpost);
+			post.removeEventListener("click",flipedpost);
+		}
+		function openpost(){
+			var postmouse = document.querySelector('#postmouse');
+			postmouse.animate({transform:'rotateX(-70deg)'},800);
+			setTimeout(function(){
+				postmouse.style.transform  = 'rotateX(-0deg)';
+			},800)
+			post.addEventListener("click",getcard());
+		}
+		function getcard(){
+			console.log('a');
+			var card = document.querySelector('#card');
+			var cardimg = document.querySelector('#cardimg');
+			card.animate({transform:'translateY(-800px)'},1200);
+			setTimeout(function(){
+				card.style.transform = 'translateY(-800px)';
+				card.style.zIndex = 5;
+				card.animate({transform:'translateY(0px)'},1000);
+			},1200)
+			setTimeout(function(){
+				card.style.transform = 'translateY(0px)';
+				cardimg.src="img/run.gif";
+			},2200)
+			setTimeout(function(){
+				cardimg.src="img/stop.png";
+			},3000)
+			post.removeEventListener("click",openpost);
+			post.removeEventListener("click",getcard);
+			card.addEventListener("click",opencard);
+		}
+		function opencard(){
+			cardimg.src="img/runfinal.gif";
+			var cardcontents = document.querySelector('#cardcontents');
+			card.animate({transform:'translateX(-1000px)'},2000);
+			setTimeout(function(){
+				cardcontents.animate({transform:'translateY(0)'},4000);
+				post.style.display = 'none';
+			},2000)
+			setTimeout(function(){
+				cardcontents.style.transform = 'translateY(0px)';
+			},6000)
+			card.removeEventListener("click",opencard);
+		}
+
+	</script>
+</head>
+<body>
+	<div id="cardcontents">
+		<div id="contents">
+			<div>
+			<p>瑠光！お誕生日おめでとうございます！</p>
+			<p>大好きな瑠光の誕生日ももう二回目！</p>
+			<p>今年は一緒に過ごせなくてごめんなさい。</p>
+			<p>二年前瑠光と初めて話したのまだも覚えてる。</p>
+			<p>下手な日本語でも一所懸命聞いてくれた瑠光</p>
+			<p>凄く優しくて良い子と思いましたよ。</p>
+			<p>僕最初から瑠光が好きだったかも。(笑)</p>
+			<p>瑠光と本当に会ってからは瑠光がもっと</p>
+			<p>優しくて性格も良いと思ったよ。</p>
+			<p>僕にとって日本＝瑠光になったかも</p>
+			<p>世界誰よりも愛したい石田瑠光の誕生日</p>
+			<p>おめでとうございます！</p>
+			<form>
+				<input type="submit" value="ここを押すと！">
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="wrap">
+		<div id="post">
+			<div id="postfront">
+				<div class="postbody">
+					<img src="img/post.png">
+					<p>
+						世界一可愛い子<br>
+						石田瑠光さん
+					</p>
+				</div>
+			</div>
+			<div id="postback">
+				<div id="postmouse">
+					<!-- 봉투입구 -->
+				</div>
+				<div class="postbody">
+					<img src="img/back.jpg">
+					<div id="card">
+						<img src="img/blank.png" id="cardimg">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
